@@ -43,7 +43,7 @@ export default function Hero() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative w-full"
+        className="relative w-screen"
       >
         <ImageCarousel />
         <motion.div
@@ -61,7 +61,7 @@ export default function Hero() {
             <Image
               src="/appImage/main.webp"
               alt="Main App Image"
-              width={300}
+              width={320}
               height={200}
             />
           </motion.div>
