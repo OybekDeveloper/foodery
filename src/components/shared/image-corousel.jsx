@@ -58,7 +58,7 @@ export function ImageCarousel() {
             src={image.img}
             key={idx}
             alt="Main App Image"
-            className="w-[150px] h-[300px] "
+            className="w-[180px] h-[340px] "
           />
         ))}
       </Marquee>
