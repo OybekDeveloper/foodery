@@ -110,7 +110,6 @@ export default function Services() {
           ))}
         </motion.ul>
       </div>
-
       <div
         ref={containerRef}
         className="relative w-full lg:w-1/2 flex justify-center items-center h-[620px] overflow-hidden"

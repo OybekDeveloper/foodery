@@ -43,9 +43,14 @@ export default function Hero() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative w-screen"
+        className="relative"
       >
-        <ImageCarousel />
+        <div className="lg:hidden w-screen">
+          <ImageCarousel />
+        </div>
+        <div className="lg:block hidden">
+          <ImageCarousel />
+        </div>
         <motion.div
           variants={animationVariants}
           initial="hidden"
