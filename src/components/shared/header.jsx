@@ -13,6 +13,7 @@ export default function Header() {
           width={100}
           height={40}
           className="h-10"
+          loading="eager"
         />
         <div className="space-x-[32px] space-y-2">
           <Link
