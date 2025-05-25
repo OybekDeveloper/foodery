@@ -41,7 +41,7 @@ export default function Header() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed top-0 left-0 w-full z-50 bg-white h-20 shadow-md"
+            className="z-[999] fixed top-0 left-0 w-full bg-white h-20 shadow-md"
           >
             <div className="max-w-[1440px] mx-auto h-full w-11/12 flex justify-between items-center">
               {/* Logo */}

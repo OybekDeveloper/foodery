@@ -51,14 +51,15 @@ const images = [
 
 export function ImageCarousel() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-      <Marquee className="[--duration:60s]">
+    <div className="relative w-full max-w-[100vw] flex flex-col items-center justify-center overflow-x-hidden">
+      <Marquee className="[--duration:60s] max-w-screen overflow-hidden">
         {images.map((image, idx) => (
-          <img
+          <Image
             src={image.img}
             key={idx}
+            width={150}
+            height={250}
             alt="Main App Image"
-            className="w-[180px] h-[340px] "
           />
         ))}
       </Marquee>

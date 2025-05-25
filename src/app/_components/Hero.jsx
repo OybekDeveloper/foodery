@@ -45,12 +45,7 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="relative"
       >
-        <div className="lg:hidden w-screen">
-          <ImageCarousel />
-        </div>
-        <div className="lg:block hidden">
-          <ImageCarousel />
-        </div>
+        <ImageCarousel />
         <motion.div
           variants={animationVariants}
           initial="hidden"

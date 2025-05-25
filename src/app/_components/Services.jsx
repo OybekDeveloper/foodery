@@ -52,7 +52,7 @@ export default function Services() {
     <main className="w-full max-w-[1440px] mx-auto flex justify-between items-center py-10 max-lg:flex-col lg:gap-10">
       <div className="w-11/12 lg:w-1/2 space-y-5">
         <motion.h1
-          className="text-center w-full font-bold text-3xl text-primary"
+          className="w-full font-montserrat text-2xl md:text-3xl lg:text-4xl font-bold text-center text-primary"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
