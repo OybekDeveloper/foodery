@@ -17,6 +17,21 @@ import StepControler from "./StepControler";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Animation variants for step container
+const stepVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  },
+  exit: { 
+    opacity: 0, 
+    x: -100, 
+    transition: { duration: 0.3, ease: "easeIn" } 
+  },
+};
+
 // Animation variants for text
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -25,10 +40,15 @@ const textVariants = {
     y: 0, 
     transition: { duration: 0.5, ease: "easeOut" } 
   },
-  exit: { 
-    opacity: 0, 
-    y: -20, 
-    transition: { duration: 0.3, ease: "easeIn" } 
+};
+
+// Animation variants for form fields
+const formFieldVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.4, ease: "easeOut" } 
   },
 };
 
@@ -47,13 +67,6 @@ const imageVariants = {
     scale: 1,
     transition: { duration: 0.5, ease: "easeOut" },
   },
-  exit: (custom) => ({
-    opacity: 0,
-    x: custom.x || 0,
-    y: custom.y || 0,
-    scale: custom.scale || 1,
-    transition: { duration: 0.3, ease: "easeIn" },
-  }),
 };
 
 const StepContent = ({ setError, error, step, orderData, setOrderData }) => {
@@ -61,17 +74,13 @@ const StepContent = ({ setError, error, step, orderData, setOrderData }) => {
     <AnimatePresence mode="wait">
       <motion.div
         key={step}
+        variants={stepVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-          exit: { opacity: 0 },
-        }}
       >
         {(() => {
-          switch (step) { // Changed to use 'step' instead of hardcoded 4
+          switch (step) {
             case 1:
               return (
                 <Step1
@@ -183,9 +192,21 @@ const Step1 = ({ orderData, setOrderData, error, setError }) => {
       >
         Расскажите про ваш бизнес
       </motion.p>
-      <form className="w-full max-w-md space-y-4">
+      <motion.form 
+        className="w-full max-w-md space-y-4"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { 
+            opacity: 1, 
+            transition: { staggerChildren: 0.2 } 
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Название бренда */}
-        <div
+        <motion.div
+          variants={formFieldVariants}
           className={`w-full px-3 border-2 pb-2 rounded-md ${
             error.name ? "border-red-500" : "border-[#CFD3D4]"
           } bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all ease-linear duration-100`}
@@ -205,10 +226,11 @@ const Step1 = ({ orderData, setOrderData, error, setError }) => {
           {error.name && (
             <p className="text-sm text-red-500 mt-1">{error.name}</p>
           )}
-        </div>
+        </motion.div>
 
         {/* Бизнес */}
-        <div
+        <motion.div
+          variants={formFieldVariants}
           onClick={() => setOpenBusiness(!openBusiness)}
           className={`cursor-pointer w-full px-3 border-2 pb-2 rounded-md ${
             error.business ? "border-red-500" : "border-[#CFD3D4]"
@@ -236,10 +258,11 @@ const Step1 = ({ orderData, setOrderData, error, setError }) => {
           {error.business && (
             <p className="text-sm text-red-500 mt-1">{error.business}</p>
           )}
-        </div>
+        </motion.div>
 
         {/* Тип продукта */}
-        <div
+        <motion.div
+          variants={formFieldVariants}
           onClick={() => setOpenProductType(!openProductType)}
           className={`cursor-pointer w-full px-3 border-2 pb-2 rounded-md ${
             error.product_type ? "border-red-500" : "border-[#CFD3D4]"
@@ -267,10 +290,10 @@ const Step1 = ({ orderData, setOrderData, error, setError }) => {
           {error.product_type && (
             <p className="text-sm text-red-500 mt-1">{error.product_type}</p>
           )}
-        </div>
+        </motion.div>
 
         {/* Телефон */}
-        <div>
+        <motion.div variants={formFieldVariants}>
           <PhoneInput
             error={error.phone}
             value={orderData.phone}
@@ -282,12 +305,14 @@ const Step1 = ({ orderData, setOrderData, error, setError }) => {
           {error.phone && (
             <p className="text-sm text-red-500 mt-1">{error.phone}</p>
           )}
-        </div>
-      </form>
+        </motion.div>
+      </motion.form>
     </div>
   );
 };
 
+// Step2, Step3, and Step4 remain unchanged for brevity
+// You can keep their existing code as provided, as they already handle their animations appropriately
 const Step2 = ({ orderData, setOrderData, error, setError }) => {
   const [activeColor, setActiveColor] = useState("primary");
   return (
